@@ -109,25 +109,25 @@ const ProductDetails = () => {
                                             <span className="font-medium">Brand:</span>
                                             <span className="ml-2">{product.brand}</span>
                                         </div>
-                                        
+
                                         <div className="flex items-center">
                                             <FaClock className="mr-2 text-gray-400" />
                                             <span className="font-medium">Added:</span>
                                             <span className="ml-2">{moment(product.createAt).fromNow()}</span>
                                         </div>
-                                        
+
                                         <div className="flex items-center">
                                             <FaStar className="mr-2 text-gray-400" />
                                             <span className="font-medium">Reviews:</span>
                                             <span className="ml-2">{product.numReviews}</span>
                                         </div>
-                                        
+
                                         <div className="flex items-center">
                                             <FaStar className="mr-2 text-gray-400" />
                                             <span className="font-medium">Rating:</span>
                                             <span className="ml-2">{product.rating}</span>
                                         </div>
-                                        
+
                                         <div className="flex items-center">
                                             <FaBox className="mr-2 text-gray-400" />
                                             <span className="font-medium">In Stock:</span>
@@ -138,7 +138,7 @@ const ProductDetails = () => {
                                     <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-4">
                                         <Ratings
                                             value={product.rating}
-                                            text={${product.numReviews} reviews}
+                                            text={`${product.numReviews} reviews`}
                                         />
 
                                         {product.countInStock > 0 && (

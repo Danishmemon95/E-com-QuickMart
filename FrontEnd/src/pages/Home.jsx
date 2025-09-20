@@ -7,7 +7,6 @@ import Header from "@/components/Header";
 import Product from './products/Product';
 
 const Home = () => {
-
     const { keyword } = useParams();
     const { data, isLoading, isError } = useGetProductsQuery({ keyword });
 
@@ -21,33 +20,33 @@ const Home = () => {
                     {isError?.data.message || isError.error}
                 </Message>
             ) : (
-                <div className="mobile-header-spacing">
-                    <div className="container-responsive">
-                        <div className="flex flex-col lg:flex-row justify-between items-center mb-8">
-                            <h1 className="text-responsive-xl font-bold text-center lg:text-left mb-4 lg:mb-0">
-                                Special Products
-                            </h1>
+                <>
+                    <div className="flex justify-between items-center">
+                        <h1 className="ml-[20rem] mt-[10rem] text-[3rem]">
+                            Special Products
+                        </h1>
 
-                            <Link
-                                to="/shop"
-                                className="bg-blue-600 text-white font-bold rounded-full py-2 px-6 lg:px-10 hover:bg-blue-700 transition-colors"
-                            >
-                                Shop Now
-                            </Link>
-                        </div>
+                        <Link
+                            to="/shop"
+                            className="bg-pink-600 font-bold rounded-full py-2 px-10 mr-[18rem] mt-[10rem]"
+                        >
+                            Shop
+                        </Link>
+                    </div>
 
-                        <div className="grid-responsive">
+                    <div>
+                        <div className="flex justify-center flex-wrap mt-[2rem]">
                             {data.products.map((product) => (
-                                <div key={product._id} className="product-card">
+                                <div key={product._id}>
                                     <Product product={product} />
                                 </div>
                             ))}
                         </div>
                     </div>
-                </div>
+                </>
             )}
         </>
     );
-}
+};
 
-export default Home
+export default Home;

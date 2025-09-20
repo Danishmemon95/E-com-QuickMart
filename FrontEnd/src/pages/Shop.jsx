@@ -19,7 +19,6 @@ const Shop = () => {
 
     const categoriesQuery = useFetchCategoriesQuery();
     const [priceFilter, setPriceFilter] = useState("");
-    const [showFilters, setShowFilters] = useState(false);
 
     const filteredProductsQuery = useGetFilteredProductsQuery({
         checked,
@@ -35,8 +34,10 @@ const Shop = () => {
     useEffect(() => {
         if (!checked.length || !radio.length) {
             if (!filteredProductsQuery.isLoading) {
+                // Filter products based on both checked categories and price filter
                 const filteredProducts = filteredProductsQuery.data.filter(
                     (product) => {
+                        // Check if the product price includes the entered price filter value
                         return (
                             product.price.toString().includes(priceFilter) ||
                             product.price === parseInt(priceFilter, 10)
@@ -63,6 +64,7 @@ const Shop = () => {
         dispatch(setChecked(updatedChecked));
     };
 
+    // Add "All Brands" option to uniqueBrands
     const uniqueBrands = [
         ...Array.from(
             new Set(
@@ -74,108 +76,103 @@ const Shop = () => {
     ];
 
     const handlePriceChange = (e) => {
+        // Update the price filter state when the user types in the input filed
         setPriceFilter(e.target.value);
     };
 
     return (
         <>
-            <div className="mobile-header-spacing">
-                <div className="container-responsive">
-                    <div className="flex flex-col lg:flex-row gap-6">
-                        {/* Filters Sidebar */}
-                        <div className="w-full lg:w-80">
-                            {/* Mobile Filter Toggle */}
-                            <div className="lg:hidden mb-4">
-                                <button
-                                    onClick={() => setShowFilters(!showFilters)}
-                                    className="w-full bg-gray-800 text-white p-3 rounded-lg flex items-center justify-between"
-                                >
-                                    <span>Filters</span>
-                                    <span>{showFilters ? '' : '+'}</span>
-                                </button>
-                            </div>
+            <div className="container mx-auto">
+                <div className="flex md:flex-row">
+                    <div className="bg-[#151515] p-3 mt-2 mb-2">
+                        <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
+                            Filter by Categories
+                        </h2>
 
-                            {/* Filter Content */}
-                            <div className={${showFilters ? 'block' : 'hidden'} lg:block p-4 lg:p-6 shadow-lg bg-white rounded-lg}>
-                                <h2 className="text-lg font-bold mb-4 text-center">Filter by Categories</h2>
-                                <div className="space-y-3 mb-6">
-                                    {categories?.map((c) => (
-                                        <div key={c._id} className="flex items-center">
-                                            <input
-                                                type="checkbox"
-                                                id={category-}
-                                                onChange={(e) => handleCheck(e.target.checked, c._id)}
-                                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-blue-600 focus:ring-blue-500"
-                                            />
-                                            <label
-                                                htmlFor={category-}
-                                                className="ml-3 text-sm font-medium text-gray-700"
-                                            >
-                                                {c.name}
-                                            </label>
-                                        </div>
-                                    ))}
+                        <div className="p-5 w-[15rem]">
+                            {categories?.map((c) => (
+                                <div key={c._id} className="mb-2">
+                                    <div className="flex ietms-center mr-4">
+                                        <input
+                                            type="checkbox"
+                                            id="red-checkbox"
+                                            onChange={(e) => handleCheck(e.target.checked, c._id)}
+                                            className="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500 dark:focus:ring-pink-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                        />
+
+                                        <label
+                                            htmlFor="pink-checkbox"
+                                            className="ml-2 text-sm font-medium text-white dark:text-gray-300"
+                                        >
+                                            {c.name}
+                                        </label>
+                                    </div>
                                 </div>
-
-                                <h2 className="text-lg font-bold mb-4 text-center">Filter by Brands</h2>
-                                <div className="space-y-3 mb-6">
-                                    {uniqueBrands?.map((brand) => (
-                                        <div key={brand} className="flex items-center">
-                                            <input
-                                                type="radio"
-                                                id={rand-}
-                                                name="brand"
-                                                onChange={() => handleBrandClick(brand)}
-                                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
-                                            />
-                                            <label
-                                                htmlFor={rand-}
-                                                className="ml-2 text-sm font-medium text-gray-700"
-                                            >
-                                                {brand}
-                                            </label>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <h2 className="text-lg font-bold mb-4 text-center">Filter by Price</h2>
-                                <div className="mb-6">
-                                    <input
-                                        type="text"
-                                        placeholder="Enter Price"
-                                        value={priceFilter}
-                                        onChange={handlePriceChange}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    />
-                                </div>
-
-                                <button
-                                    className="w-full bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors font-medium"
-                                    onClick={() => window.location.reload()}
-                                >
-                                    Reset Filters
-                                </button>
-                            </div>
+                            ))}
                         </div>
 
-                        {/* Products Grid */}
-                        <div className="flex-1">
-                            <div className="mb-6">
-                                <h2 className="text-xl font-semibold text-center lg:text-left">
-                                    {products?.length} Products Found
-                                </h2>
-                            </div>
-                            
+                        <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
+                            Filter by Brands
+                        </h2>
+
+                        <div className="p-5">
+                            {uniqueBrands?.map((brand) => (
+                                <>
+                                    <div className="flex items-enter mr-4 mb-5">
+                                        <input
+                                            type="radio"
+                                            id={brand}
+                                            name="brand"
+                                            onChange={() => handleBrandClick(brand)}
+                                            className="w-4 h-4 text-pink-400 bg-gray-100 border-gray-300 focus:ring-pink-500 dark:focus:ring-pink-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                        />
+
+                                        <label
+                                            htmlFor="pink-radio"
+                                            className="ml-2 text-sm font-medium text-white dark:text-gray-300"
+                                        >
+                                            {brand}
+                                        </label>
+                                    </div>
+                                </>
+                            ))}
+                        </div>
+
+                        <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
+                            Filer by Price
+                        </h2>
+
+                        <div className="p-5 w-[15rem]">
+                            <input
+                                type="text"
+                                placeholder="Enter Price"
+                                value={priceFilter}
+                                onChange={handlePriceChange}
+                                className="w-full px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:ring focus:border-pink-300"
+                            />
+                        </div>
+
+                        <div className="p-5 pt-0">
+                            <button
+                                className="w-full border my-4"
+                                onClick={() => window.location.reload()}
+                            >
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="p-3">
+                        <h2 className="h4 text-center mb-2">{products?.length} Products</h2>
+                        <div className="flex flex-wrap">
                             {products.length === 0 ? (
                                 <Loader />
                             ) : (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
-                                    {products?.map((p) => (
-                                        <div key={p._id} className="w-full">
-                                            <ProductCard p={p} />
-                                        </div>
-                                    ))}
-                                </div>
+                                products?.map((p) => (
+                                    <div className="p-3" key={p._id}>
+                                        <ProductCard p={p} />
+                                    </div>
+                                ))
                             )}
                         </div>
                     </div>
