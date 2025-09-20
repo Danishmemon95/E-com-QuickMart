@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "npm install --prefix FrontEnd && npm run build --prefix FrontEnd",
-    "backend": "nodemon backend/index.js",
+    "backend": "node backend/index.js",
     "frontend": "npm run dev --prefix FrontEnd",
     "dev": "concurrently \"npm run frontend\" \"npm run backend"
   },
