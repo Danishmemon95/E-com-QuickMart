@@ -11,7 +11,7 @@ import {
     addFavoriteToLocalStorage,
     getFavoritesFromLocalStorage,
     removeFavoriteFromLocalStorage,
-} from "../../Utils/LocalStorage";
+} from "../../Utils/localStorage";
 
 const HeartIcon = ({ product }) => {
     const dispatch = useDispatch();
