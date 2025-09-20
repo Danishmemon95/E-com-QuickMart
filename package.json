@@ -5,8 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-   "build": "npm install --prefix FrontEnd && npm run build --prefix FrontEnd",
-    "start": "npm run start --prefix BackEnd "
+    "build": "npm install --prefix FrontEnd && npm run build --prefix FrontEnd",
+    "start": "npm run start --prefix BackEnd",
+    "backend": "nodemon Backend/index.js",
+    "frontend": "npm run dev --prefix FrontEnd",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend"
   },
   "keywords": [],
   "author": "",
