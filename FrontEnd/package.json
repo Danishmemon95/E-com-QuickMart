@@ -4,10 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "npm install --prefix FrontEnd && npm run build --prefix FrontEnd",
-    "backend": "nodemon backend/index.js",
-    "frontend": "npm run dev --prefix FrontEnd",
-    "dev": "concurrently \"npm run frontend\" \"npm run backend",
+    "dev": "vite",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
