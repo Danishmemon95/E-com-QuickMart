@@ -1,0 +1,269 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Custom responsive utilities */
+:root {
+  --nav-width: 4rem;
+  --nav-width-expanded: 15rem;
+  --content-margin: 4.5rem;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --content-margin: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --nav-width: 0;
+    --nav-width-expanded: 0;
+    --content-margin: 0;
+  }
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive container */
+.container-responsive {
+  margin-left: var(--content-margin);
+  padding: 1rem;
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .container-responsive {
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-responsive {
+    margin-left: 0;
+    padding: 0.5rem;
+  }
+}
+
+/* Responsive typography */
+.text-responsive-xl {
+  font-size: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .text-responsive-xl {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .text-responsive-xl {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .text-responsive-xl {
+    font-size: 1.5rem;
+  }
+}
+
+.text-responsive-lg {
+  font-size: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .text-responsive-lg {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .text-responsive-lg {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .text-responsive-lg {
+    font-size: 1.25rem;
+  }
+}
+
+/* Responsive grid */
+.grid-responsive {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+@media (max-width: 640px) {
+  .grid-responsive {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+/* Mobile navigation */
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .mobile-nav {
+    display: block;
+  }
+}
+
+.desktop-nav {
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .desktop-nav {
+    display: none;
+  }
+}
+
+/* Mobile header spacing */
+.mobile-header-spacing {
+  padding-top: 0;
+}
+
+@media (max-width: 1024px) {
+  .mobile-header-spacing {
+    padding-top: 4rem;
+  }
+}
+
+/* Wave group styles */
+.wave-group {
+  position: relative;
+}
+
+.wave-group .input {
+  font-size: 20px;
+  padding: 10px 10px 3px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #515151;
+  background: transparent;
+}
+
+.wave-group .input:focus {
+  outline: none;
+}
+
+.wave-group .label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  display: flex;
+}
+
+.wave-group .label-char {
+  transition: 0.2s ease all;
+  transition-delay: calc(var(--index) * 0.05s);
+}
+
+/* Replace this */
+.wave-group .label.active .label-char {
+  transform: translateY(-30px);
+  font-size: 15px;
+  color: #5264AE;
+}
+
+.wave-group .bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.wave-group .bar:before,
+.wave-group .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264AE;
+  transition: 0.2s ease all;
+}
+
+.wave-group .bar:before {
+  left: 50%;
+}
+
+.wave-group .bar:after {
+  right: 50%;
+}
+
+.wave-group .input:focus~.bar:before,
+.wave-group .input:focus~.bar:after {
+  width: 50%;
+}
+
+.carousel-class {
+  box-shadow: 0px 10px 18px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+/* Responsive product cards */
+.product-card {
+  width: 100%;
+  max-width: 320px;
+  min-width: 280px;
+}
+
+@media (max-width: 640px) {
+  .product-card {
+    max-width: 100%;
+    min-width: auto;
+  }
+}
+
+/* Responsive spacing */
+.space-responsive {
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .space-responsive {
+    margin-top: 1rem;
+  }
+}
+
+/* Mobile-first responsive utilities */
+@media (max-width: 640px) {
+  .text-xs-mobile {
+    font-size: 0.75rem;
+  }
+  
+  .text-sm-mobile {
+    font-size: 0.875rem;
+  }
+  
+  .p-mobile {
+    padding: 0.5rem;
+  }
+  
+  .px-mobile {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  .py-mobile {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}

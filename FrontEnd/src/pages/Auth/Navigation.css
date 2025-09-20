@@ -1,0 +1,121 @@
+﻿/* Desktop Navigation Styles */
+#navigation-container {
+    width: 4%;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+    border-right: 1px solid black;
+}
+
+#navigation-container:hover {
+    width: 12%;
+}
+
+/* Initially hide nav-item-name */
+.nav-item-name {
+    display: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#navigation-container:hover .nav-item-name {
+    display: block;
+    opacity: 1;
+}
+
+.search-input {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#navigation-container:hover .search-input {
+    display: block;
+    opacity: 1;
+}
+
+#navigation-container:hover .search-icon {
+    display: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Mobile Navigation Styles */
+.mobile-nav {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .mobile-nav {
+        display: block;
+    }
+    
+    .desktop-nav {
+        display: none;
+    }
+}
+
+/* Mobile menu animations */
+.mobile-menu-enter {
+    transform: translateX(100%);
+}
+
+.mobile-menu-enter-active {
+    transform: translateX(0);
+    transition: transform 300ms ease-in-out;
+}
+
+.mobile-menu-exit {
+    transform: translateX(0);
+}
+
+.mobile-menu-exit-active {
+    transform: translateX(100%);
+    transition: transform 300ms ease-in-out;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1536px) {
+    /* 2XL screens - TV */
+    .container-responsive {
+        margin-left: 4.5rem;
+    }
+}
+
+@media (max-width: 1280px) {
+    /* XL screens - Desktop */
+    .container-responsive {
+        margin-left: 4.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    /* LG screens - Laptop */
+    .container-responsive {
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* MD screens - Tablet */
+    .container-responsive {
+        margin-left: 0;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    /* SM screens - Mobile */
+    .container-responsive {
+        margin-left: 0;
+        padding: 0.5rem;
+    }
+}
+
+/* Mobile header spacing */
+.mobile-header-spacing {
+    padding-top: 4rem;
+}
+
+@media (max-width: 1024px) {
+    .mobile-header-spacing {
+        padding-top: 4rem;
+    }
+}
